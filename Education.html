@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education - ICM Analytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #60a5fa;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 20px;
+        }
+        
+        .page-header h1 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .page-header p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        .term-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-bottom: 25px;
+        }
+        
+        .term-card h2 {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #60a5fa;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .term-card h3 {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: #a78bfa;
+            margin: 25px 0 15px 0;
+            line-height: 1.3;
+        }
+        
+        .term-card p {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .term-card ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .term-card li {
+            color: #cbd5e1;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        
+        .formula {
+            background: rgba(15, 23, 42, 0.8);
+            padding: 15px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            color: #34d399;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            margin: 20px 0;
+            text-align: center;
+            overflow-x: auto;
+            word-wrap: break-word;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: auto;
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .page-header {
+                margin-bottom: 35px;
+                padding: 15px;
+            }
+            
+            .term-card {
+                padding: 25px 15px;
+                margin-bottom: 20px;
+                border-radius: 16px;
+            }
+            
+            .term-card ul {
+                margin-left: 15px;
+            }
+            
+            .formula {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .term-card {
+                padding: 20px 12px;
+            }
+            
+            .term-card ul {
+                margin-left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="Home.html" class="logo">ICM Analytics</a>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Launchpads.html">Launchpads</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Education.html" class="active">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="page-header">
+            <h1>ICM Education</h1>
+            <p>Understanding key metrics and terminology</p>
+        </div>
+        
+        <div class="term-card">
+            <h2>P/E Ratio (Price-to-Earnings)</h2>
+            <p>The <span class="highlight">P/E ratio</span> measures how expensive a protocol is relative to its earnings. It's calculated by dividing the market capitalization (or FDV) by annualized earnings.</p>
+            
+            <div class="formula">
+                P/E Ratio = Market Cap ÷ (Revenue × 365)
+            </div>
+            
+            <h3>What does it mean?</h3>
+            <ul>
+                <li><span class="highlight">Lower P/E = Better Value</span> - You're paying less for each dollar of earnings</li>
+                <li><span class="highlight">Higher P/E</span> - Either overvalued or market expects high growth</li>
+                <li>P/E of 10 means you're paying 10× the annual earnings for the asset</li>
+            </ul>
+            
+            <h3>P/E Benchmarks</h3>
+            <p>Understanding what different P/E ratios mean:</p>
+            <ul>
+                <li><span class="highlight">P/E under 5</span> - Extremely cheap, possibly undervalued or concerns about sustainability</li>
+                <li><span class="highlight">P/E 5-15</span> - Good value, reasonable pricing relative to earnings</li>
+                <li><span class="highlight">P/E 15-25</span> - Fair value, typical for established companies/protocols</li>
+                <li><span class="highlight">P/E 25-50</span> - Expensive, market expects strong growth</li>
+                <li><span class="highlight">P/E over 50</span> - Very expensive, either speculative or high-growth story</li>
+            </ul>
+            
+            <h3>Context Matters</h3>
+            <p>Traditional stock market averages:</p>
+            <ul>
+                <li><span class="highlight">S&P 500 average</span> - Around P/E 20-25</li>
+                <li><span class="highlight">Growth tech stocks</span> - Often P/E 30-100+</li>
+                <li><span class="highlight">Value stocks</span> - Often P/E 10-20</li>
+            </ul>
+            <p>Crypto protocols with P/E under 10 are often considered attractive opportunities, especially if revenue is stable or growing.</p>
+            
+            <h3>Example</h3>
+            <p>If a protocol has a market cap of $100M and generates $1M in daily revenue:</p>
+            <ul>
+                <li>Annual revenue = $1M × 365 = $365M</li>
+                <li>P/E ratio = $100M ÷ $365M = 0.27</li>
+                <li>This means investors are paying $0.27 for every $1 of annual earnings</li>
+            </ul>
+        </div>
+        
+        <div class="term-card">
+            <h2>Market Cap vs FDV</h2>
+            
+            <h3>Market Capitalization (Market Cap)</h3>
+            <p><span class="highlight">Market Cap</span> represents the total value of all tokens currently in circulation.</p>
+            <div class="formula">
+                Market Cap = Token Price × Circulating Supply
+            </div>
+            
+            <h3>Fully Diluted Valuation (FDV)</h3>
+            <p><span class="highlight">FDV</span> represents what the market cap would be if all tokens were in circulation (including locked, vested, and future emissions).</p>
+            <div class="formula">
+                FDV = Token Price × Total Supply
+            </div>
+            
+            <h3>Why both matter?</h3>
+            <ul>
+                <li><span class="highlight">Market Cap</span> shows current valuation</li>
+                <li><span class="highlight">FDV</span> shows potential dilution when more tokens unlock</li>
+                <li>Large gap between Market Cap and FDV means significant inflation ahead</li>
+            </ul>
+        </div>
+        
+        <div class="term-card">
+            <h2>Revenue (24h)</h2>
+            <p><span class="highlight">Revenue</span> is the total income generated by a protocol in the last 24 hours. This typically includes:</p>
+            <ul>
+                <li>Trading fees collected</li>
+                <li>Protocol fees from transactions</li>
+                <li>Service charges</li>
+            </ul>
+            <p>We annualize this number (multiply by 365) to compare against market valuations.</p>
+        </div>
+        
+        <div class="term-card">
+            <h2>GMV (Gross Merchandise Value)</h2>
+            <p><span class="highlight">GMV</span> represents the total dollar value of goods or services transacted through a platform over a specific period.</p>
+            
+            <div class="formula">
+                GMV = Total Transaction Value
+            </div>
+            
+            <h3>What does it measure?</h3>
+            <p>GMV shows the total volume of commerce flowing through a platform, regardless of whether the platform profits from each transaction.</p>
+            
+            <h3>GMV vs Revenue</h3>
+            <ul>
+                <li><span class="highlight">GMV</span> - Total value of all transactions (e.g., $75M in products sold)</li>
+                <li><span class="highlight">Revenue</span> - What the platform actually earns (e.g., 2% commission = $1.5M)</li>
+                <li>High GMV shows market activity and user engagement</li>
+                <li>Revenue shows actual monetization and profitability</li>
+            </ul>
+            
+            <h3>Example</h3>
+            <p>If an e-commerce platform facilitates $100M in sales but only takes a 3% commission:</p>
+            <ul>
+                <li>GMV = $100M (total goods sold)</li>
+                <li>Revenue = $3M (what the platform earns)</li>
+                <li>GMV shows scale, Revenue shows business model efficiency</li>
+            </ul>
+            
+            <h3>Why it matters</h3>
+            <p>GMV helps you understand:</p>
+            <ul>
+                <li>Platform adoption and growth trajectory</li>
+                <li>Market size and total addressable opportunity</li>
+                <li>User engagement and transaction frequency</li>
+                <li>Whether revenue growth can scale with GMV growth</li>
+            </ul>
+        </div>
+        
+        <div class="term-card">
+            <h2>Token Economics</h2>
+            
+            <h3>Token Burns</h3>
+            <p>When tokens are permanently removed from circulation, reducing total supply and potentially increasing scarcity.</p>
+            
+            <h3>Token Buybacks</h3>
+            <p>When a protocol uses revenue to purchase its own tokens from the market, often to reward users or reduce circulating supply.</p>
+            
+            <h3>Circulating Supply</h3>
+            <p>The number of tokens currently available and trading in the market.</p>
+            
+            <h3>Total Supply</h3>
+            <p>The maximum number of tokens that will ever exist (including locked, vested, and yet-to-be-minted tokens).</p>
+        </div>
+        
+        <div class="term-card">
+            <h2>Why These Metrics Matter</h2>
+            <p>Understanding these metrics helps you:</p>
+            <ul>
+                <li>Compare protocols fairly across different sizes</li>
+                <li>Identify potentially undervalued opportunities</li>
+                <li>Assess whether a token price is justified by fundamentals</li>
+                <li>Understand dilution risk from token unlocks</li>
+                <li>Make informed investment decisions</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

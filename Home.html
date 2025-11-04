@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICM Analytics - Data-Driven Insights for Internet Capital Markets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: #60a5fa;
+        }
+        
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+        }
+        
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero .tagline {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #94a3b8;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 40px;
+        }
+        
+        .section {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        
+        .section p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+        }
+        
+        .stat-card .number {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .stat-card .label {
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            color: #94a3b8;
+            font-weight: 600;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border: 2px solid rgba(167, 139, 250, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        
+        .highlight-box h3 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            color: #a78bfa;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #cbd5e1;
+            line-height: 1.8;
+        }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .achievement-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(96, 165, 250, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-card:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        .achievement-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .achievement-card h4 {
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+        
+        .achievement-card p {
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
+        }
+        
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #60a5fa;
+            color: #60a5fa;
+        }
+        
+        .cta-button.secondary:hover {
+            background: rgba(96, 165, 250, 0.1);
+        }
+        
+        .cta-button.x-button {
+            background: #000;
+            color: white;
+            border: 2px solid #333;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cta-button.x-button:hover {
+            background: #1a1a1a;
+            border-color: #60a5fa;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        strong {
+            color: #60a5fa;
+            font-weight: 700;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .nav-container {
+                height: auto;
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: space-around;
+                gap: 10px;
+                margin-top: 10px;
+            }
+            
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            
+            .hero {
+                padding: 40px 15px 30px;
+            }
+            
+            .container {
+                padding: 15px 15px 30px;
+            }
+            
+            .section {
+                padding: 30px 20px;
+                margin-bottom: 30px;
+                border-radius: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .achievements {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .cta-section {
+                padding: 40px 15px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .cta-button.x-button svg {
+                width: 20px;
+                height: 20px;
+                margin-right: 6px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="Home.html" class="logo">ICM Analytics</a>
+            <ul class="nav-links">
+                <li><a href="Home.html" class="active">Home</a></li>
+                <li><a href="Launchpads.html">Launchpads</a></li>
+                <li><a href="Projects.html">Projects</a></li>
+                <li><a href="Education.html">Education</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h1>ICM Analytics</h1>
+        <p class="tagline">Your Gateway to Data-Driven Insights for Internet Capital Markets</p>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Welcome to ICM Analytics</h2>
+            <p>ICM Analytics is your source for data-driven insights for <strong>Internet Capital Markets (ICM)</strong>. We empower YOU to uncover undervalued gems, start believing in projects, and enable <strong>fundamental investing in Crypto</strong>.</p>
+            
+            <h3 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #a78bfa; margin-top: 40px; margin-bottom: 20px;">Our Mission & Goals</h3>
+            
+            <div style="background: rgba(96, 165, 250, 0.05); border-left: 4px solid #60a5fa; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+                <h4 style="font-size: clamp(1.2rem, 3vw, 1.5rem); color: #60a5fa; margin-bottom: 20px;">ICM Analytics has the following goals:</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">
+                        <strong style="color: #60a5fa;">1. Make people believe:</strong> <span style="color: #cbd5e1;">with a comprehensive deep-dive for selected projects with fundamental metrics</span>
+                    </li>
+                    <li style="padding: 12px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.1);">
+                        <strong style="color: #a78bfa;">2. Data-Driven approach:</strong> <span style="color: #cbd5e1;">educate people on the metrics relevant to the project (this could be P/E, GMV, et cetera)</span>
+                    </li>
+                    <li style="padding: 12px 0;">
+                        <strong style="color: #ec4899;">3. Integrate those metrics into a dashboard:</strong> <span style="color: #cbd5e1;">so investors can easily manage their investment by watching growth metrics</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>The Founder's Journey</h2>
+            <p>Founded by a seasoned on-chain trader who started in crypto in <strong>2017</strong>, I've been actively trading on-chain since <strong>2017 (Etherdelta, IDEX)</strong> and have executed over <strong>$30 million in volume</strong> across various platforms.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">2017</div>
+                    <div class="label">Started in Crypto</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$30M+</div>
+                    <div class="label">Trading Volume</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">2021</div>
+                    <div class="label">Went Full-Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">7+</div>
+                    <div class="label">Years Experience</div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>From Corporate to Crypto</h3>
+                <p>The decision to leave corporate life and pursue full-time trading wasn't easy, but it was the best decision I ever made. By having a strong passion for Crypto with cutting-edge analytics and a strategy of buying low and selling high, I've been able to maintain consistent profitability while helping others navigate the complex world of on-chain trading with research articles and insights on X.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Personal Highlights</h2>
+            <div class="achievements">
+                <div class="achievement-card">
+                    <div class="icon">🎮</div>
+                    <h4>Top Gamer</h4>
+                    <p>World of Tanks elite player (prior to crypto). Gaming taught me strategy, quick decision-making, and competitive analysisâ€”skills that translate perfectly to trading.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">🧠</div>
+                    <h4>On-Chain Smart Money</h4>
+                    <p>Recognized as On-Chain Smart Money on EVM in January 2024. This recognition validates years of strategic trading and data-driven decision making.</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="icon">📊</div>
+                    <h4>Consistent Profitability</h4>
+                    <p>Maintained profitable trading since 2017 through market cycles, leveraging advanced analytics and strategic foresight to stay ahead.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <h2>Ready to Start Your Journey?</h2>
+        <div class="cta-buttons">
+            <a href="Launchpads.html" class="cta-button">Explore Launchpads</a>
+            <a href="Projects.html" class="cta-button secondary">View Projects</a>
+            <a href="https://x.com/icmanalytics" target="_blank" rel="noopener noreferrer" class="cta-button x-button">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" style="vertical-align: middle; margin-right: 8px;">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Follow on X
+            </a>
+        </div>
+    </div>
+</body>
+</html>

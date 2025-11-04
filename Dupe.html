@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dupe - Believe in the Vision</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-link:hover {
+            color: #60a5fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 20px 40px;
+        }
+        
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 10vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero .tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #94a3b8;
+            font-weight: 300;
+        }
+        
+        .section {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 25px;
+            color: #60a5fa;
+            line-height: 1.3;
+        }
+        
+        .section h3 {
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            margin: 30px 0 15px 0;
+            color: #a78bfa;
+            line-height: 1.3;
+        }
+        
+        .section p {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(96, 165, 250, 0.1);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 16px;
+            padding: 25px 20px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 800;
+            color: #60a5fa;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .stat-card .label {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            color: #94a3b8;
+        }
+        
+        .flywheel-section {
+            margin: 40px 0;
+        }
+        
+        .flywheel-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        
+        .flywheel-table th {
+            background: rgba(96, 165, 250, 0.2);
+            padding: 15px 12px;
+            text-align: left;
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: #60a5fa;
+            border-bottom: 2px solid rgba(96, 165, 250, 0.3);
+        }
+        
+        .flywheel-table td {
+            background: rgba(30, 41, 59, 0.5);
+            padding: 15px 12px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+        }
+        
+        .flywheel-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .flywheel-diagram {
+            background: transparent;
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin: 30px 0;
+        }
+        
+        .flywheel-diagram svg {
+            width: 100%;
+            height: auto;
+            display: block;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .diagram-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            padding: 25px 20px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 16px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+        
+        .legend-badge {
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        
+        .legend-badge.black {
+            background: #000;
+        }
+        
+        .legend-text {
+            flex: 1;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+            border: 2px solid rgba(167, 139, 250, 0.3);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin: 25px 0;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.4);
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            color: #cbd5e1;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            line-height: 1.8;
+        }
+        
+        strong {
+            color: #60a5fa;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 15px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .back-link {
+                font-size: 0.85rem;
+            }
+            
+            .container {
+                padding: 15px 15px 30px;
+            }
+            
+            .hero {
+                padding: 40px 15px 30px;
+            }
+            
+            .section {
+                padding: 25px 15px;
+                margin-bottom: 30px;
+                border-radius: 16px;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin: 25px 0;
+            }
+            
+            .stat-card {
+                padding: 20px 15px;
+            }
+            
+            .flywheel-table {
+                font-size: 0.85rem;
+            }
+            
+            .flywheel-table th,
+            .flywheel-table td {
+                padding: 12px 10px;
+            }
+            
+            .flywheel-diagram {
+                padding: 20px 15px;
+                border-radius: 16px;
+            }
+            
+            .diagram-legend {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 20px 15px;
+            }
+            
+            .legend-badge {
+                min-width: 24px;
+                height: 24px;
+                font-size: 0.8rem;
+            }
+            
+            .highlight-box {
+                padding: 20px 15px;
+            }
+            
+            .cta-section {
+                padding: 30px 15px;
+            }
+            
+            .cta-button {
+                padding: 12px 28px;
+                margin: 8px;
+                display: block;
+                max-width: 300px;
+                margin: 10px auto;
+            }
+            
+            ul {
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .flywheel-table {
+                font-size: 0.8rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: none;
+            }
+        }
+
+        /* Table responsiveness */
+        @media (max-width: 600px) {
+            .flywheel-table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .flywheel-table {
+                min-width: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="Home.html" class="logo">ICM Analytics</a>
+            <a href="Projects.html" class="back-link">
+                <span>←</span>
+                <span>Back to Projects</span>
+            </a>
+        </div>
+    </nav>
+    
+    <div class="hero">
+        <h1>$DUPE</h1>
+        <p class="tagline">The Future of AI-Powered Commerce</p>
+    </div>
+    
+    <div class="container">
+        
+        <div class="section">
+            <h2>The Problem</h2>
+            <p>The internet made everything available, but not everything affordable.</p>
+            <p>E-commerce is a <strong>$5 trillion supermassive global market</strong> steeped in inefficiencies. Two identical sofas might sell for $3,200 at one retailer and $1,150 at another – same factory, same SKU, different logo. This is true in home goods, fashion, accessories, and beauty among other categories.</p>
+            <p>Most people don't realize they're overpaying for the same product listed under different brands or retailers. E-commerce is fragmented, prices are inconsistent, and shoppers waste hours hunting for deals.</p>
+            <p><strong>Retail has become a confidence game</strong>, one where brand storytelling hides margin storytelling. Retail markups still dominate because there's no transparent price discovery layer for products, leading to increasing buyer regret post purchase. Consumers are now living in a constant state of FOMO before checkout and buyer's remorse after, and it's only getting worse.</p>
+        </div>
+        
+        <div class="section">
+            <h2>The Solution: Dupe is to AI commerce what Stripe is to payments</h2>
+            <p>Dupe solves the two most pernicious problems in ecommerce: <strong>consumer price discovery</strong> and <strong>minimizing buyer regret</strong>.</p>
+            <p>We find identical or near-identical products across the web at incredible deals, often <strong>60-70-80% less</strong> than the product a shopper was just looking at.</p>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="number">18M+</div>
+                    <div class="label">Users</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$75M+</div>
+                    <div class="label">GMV Driven</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">6%</div>
+                    <div class="label">Conversion Rate (2x Industry)</div>
+                </div>
+            </div>
+            
+            <h3>The Market Opportunity</h3>
+            <ul>
+                <li><strong>57% of Gen Z</strong> already use AI to shop</li>
+                <li><strong>44%</strong> say it's their preferred way to shop</li>
+                <li>Millions are asking AI what to buy, every day</li>
+            </ul>
+            
+            <p>But there's a blind spot: <strong>LLMs don't understand commerce</strong>. They don't have product catalogs, behavioral data, or monetization rails. They can talk about shopping, not participate in it.</p>
+            
+            <div class="highlight-box">
+                <p><strong>That's the white space Dupe is bridging over.</strong></p>
+            </div>
+            
+            <p>In addition to scaling our viral consumer platform at <strong>dupe.com</strong>, we've shipped and are actively piloting an <strong>MCP (Mode Context Protocol) and API layer</strong> that lets any major LLM or e-commerce app plug directly into our infrastructure, enabling true agent-to-agent commerce.</p>
+            
+            <p>For example, ChatGPT, Perplexity, or Claude could instantly pull live Dupe data to surface verified lookalikes and checkout links optimized for conversion – Dupe has behavioral and checkout data; they don't.</p>
+            
+            <p><strong>Think:</strong> instant access to live product data, price comparisons, and frictionless checkout links, all wrapped in a <strong>95% gross-margin monetization rail</strong>.</p>
+            
+            <p>But information alone isn't enough to fix incentives. To realign incentives between shoppers, partners, and the platform, we need a shared economic layer.</p>
+            
+            <p><strong>That's where the $DUPE token comes in.</strong></p>
+        </div>
+        
+        <div class="section">
+            <h2>Introducing $DUPE's Token Flywheel</h2>
+            <p>Every part of the system strengthens the next:</p>
+            
+            <div class="flywheel-section">
+                <div class="flywheel-table-container">
+                    <table class="flywheel-table">
+                        <thead>
+                            <tr>
+                                <th>Stage</th>
+                                <th>Effect</th>
+                                <th>Reinforcement</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Better Deals</strong></td>
+                                <td>Viral growth</td>
+                                <td>Brings more shoppers</td>
+                            </tr>
+                            <tr>
+                                <td><strong>More Shoppers</strong></td>
+                                <td>Token demand</td>
+                                <td>Increases buybacks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>More Partners</strong></td>
+                                <td>Token utility</td>
+                                <td>Drives redemptions + burns</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Better Selection</strong></td>
+                                <td>More engagement</td>
+                                <td>Starts loop again</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="flywheel-diagram">
+                    <img src="Flywheeldiagram.png" alt="Dupe Token Flywheel Diagram" style="width: 100%; max-width: 800px; height: auto; display: block; margin: 0 auto;">
+                </div>
+                
+                <div class="diagram-legend">
+                    <div class="legend-item">
+                        <div class="legend-badge">A</div>
+                        <div class="legend-text">Better deals make more people share Dupe</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">B</div>
+                        <div class="legend-text">Sharing Dupe brings in more shoppers</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">C</div>
+                        <div class="legend-text">More shoppers earn $DUPE as they shop, resulting in more holders</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">D</div>
+                        <div class="legend-text">Rewarded shopping drives activity and attracts more partners</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">E</div>
+                        <div class="legend-text">Partners use $DUPE to boost visibility and offer deeper discounts</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">F</div>
+                        <div class="legend-text">Top products surface more often to engaged shoppers</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">G</div>
+                        <div class="legend-text">Greater selection fuels even more shopping activity</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge">H</div>
+                        <div class="legend-text">Redeeming $DUPE sparks more purchases and bigger savings</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge black">I</div>
+                        <div class="legend-text">All redeemed $DUPE gets burned from supply</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge black">J</div>
+                        <div class="legend-text">All $DUPE used to boost placements gets burned from supply</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-badge black">K</div>
+                        <div class="legend-text">When a user earns $DUPE, we buy back the token from the market</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p><strong>This system is designed for each loop to strengthen the others:</strong> Better deals bring more users, more users attract more partners, and more partners create a better marketplace resulting in growing economic activity.</p>
+                <p style="margin-top: 20px;"><strong>When fully integrated, this flywheel will be the first of its kind to ecommerce.</strong></p>
+            </div>
+            
+            <h3>Key Mechanisms</h3>
+            <ul>
+                <li><strong>Token Rewards:</strong> $DUPE is earned for taking deep actions with Dupe, ex: signing up, inviting friends, running deal searches, clicking partner links, installing our app, and having a daily streak on our platform</li>
+                <li><strong>Token Burns:</strong> Every redeemed or boosted token gets burned from supply – making $DUPE scarcer. Token burns will be turned on at a future date (to be disclosed)</li>
+                <li><strong>Token Buybacks:</strong> When users earn $DUPE through rewards, the platform buys those tokens back from the market into the $DUPE treasury. Dupe has already bought back <strong>23% of supply</strong> to date</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>The Vision</h2>
+            <p><strong>Users save more, partners sell more, and every participant earns a stake in the system they help grow.</strong></p>
+            <p>As commerce becomes increasingly AI-mediated, Dupe is building the infrastructure that lets machines and people find the best price for everything on Earth.</p>
+        </div>
+        
+        <div class="cta-section">
+            <h2 style="color: #60a5fa; margin-bottom: 30px; font-size: clamp(1.8rem, 5vw, 2.5rem);">Ready to Believe?</h2>
+            <a href="https://dupe.com" class="cta-button" target="_blank">Visit Dupe.com</a>
+            <a href="https://dune.com/propedhev3/dupe-treasury" class="cta-button" target="_blank">View Treasury</a>
+        </div>
+    </div>
+</body>
+</html>
