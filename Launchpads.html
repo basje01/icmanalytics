@@ -345,6 +345,55 @@
             font-size: 1.3rem;
         }
 
+        .warning-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-left: 8px;
+            cursor: help;
+            position: relative;
+        }
+
+        .warning-icon:hover .warning-tooltip {
+            display: block;
+        }
+
+        .warning-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.98);
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 12px 16px;
+            width: 280px;
+            z-index: 1000;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #fbbf24;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .warning-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #f59e0b;
+        }
+
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .nav-container {
@@ -478,7 +527,7 @@
         <div id="overview" class="tab-content active">
             <div class="page-header">
                 <h1>Protocol Rankings</h1>
-                <p>10th of November • Click column names to sort • Lower P/E = Better Value</p>
+                <p>11th of November • Click column names to sort • Lower P/E = Better Value</p>
             </div>
             
             <div class="protocol-table-wrapper">
@@ -519,22 +568,23 @@
                             <td>
                                 <div class="protocol-name">
                                     <div class="rank-badge rank-1">1</div>
-                                    <strong>Pump.Fun</strong>
+                                    <strong>Believe</strong>
+                                    <span class="warning-icon">!<span class="warning-tooltip">Team has been inactive and liquidity is very low, advise is not to buy this token.</span></span>
                                 </div>
                             </td>
-                            <td>$1.11M</td>
-                            <td><span class="pe-value">3.73</span></td>
+                            <td>$10,414</td>
+                            <td><span class="pe-value">3.06</span></td>
                             <td style="color: #60a5fa;">Active Buyback</td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="protocol-name">
                                     <div class="rank-badge rank-2">2</div>
-                                    <strong>Believe</strong>
+                                    <strong>Pump.Fun</strong>
                                 </div>
                             </td>
-                            <td>$6,156</td>
-                            <td><span class="pe-value">5.50</span></td>
+                            <td>$1.56M</td>
+                            <td><span class="pe-value">4.14</span></td>
                             <td style="color: #60a5fa;">Active Buyback</td>
                         </tr>
                         <tr style="background: rgba(249, 115, 22, 0.1);">
@@ -542,10 +592,11 @@
                                 <div class="protocol-name">
                                     <div class="rank-badge rank-3">3</div>
                                     <strong>Heaven 🔥</strong>
+                                    <span class="warning-icon">!<span class="warning-tooltip">Team is saying that Heaven V2 is being developed, there is no proof for this, remain cautious!</span></span>
                                 </div>
                             </td>
-                            <td>$491</td>
-                            <td><span class="pe-value">28.22</span></td>
+                            <td>$580</td>
+                            <td><span class="pe-value">20.12</span></td>
                             <td style="color: #f97316; font-weight: 700;">🔥 Burned - Supply Reduction</td>
                         </tr>
                     </tbody>
@@ -591,6 +642,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$580</td>
+                            <td>$4.26M</td>
+                            <td><span class="pe-value">20.12</span></td>
+                            <td>$7.74M</td>
+                            <td><span class="pe-fdv-value">36.54</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$491</td>
@@ -793,6 +852,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(249, 115, 22, 0.05);">
+                            <td><strong>Nov 11, 2025 🔥</strong></td>
+                            <td>$580</td>
+                            <td>$4.26M</td>
+                            <td><span class="pe-value">20.12</span></td>
+                            <td style="color: #f97316; font-weight: 600;">Burned - Supply Reduction</td>
+                        </tr>
+                        <tr style="background: rgba(249, 115, 22, 0.05);">
                             <td><strong>Nov 10, 2025 🔥</strong></td>
                             <td>$491</td>
                             <td>$5.06M</td>
@@ -878,6 +944,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$10,414</td>
+                            <td>$11.65M</td>
+                            <td><span class="pe-value">3.06</span></td>
+                            <td>$15.49M</td>
+                            <td><span class="pe-fdv-value">4.08</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$23,120</td>
@@ -1080,6 +1154,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(96, 165, 250, 0.05);">
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$10,414</td>
+                            <td>$11.65M</td>
+                            <td><span class="pe-value">3.06</span></td>
+                            <td style="color: #60a5fa; font-weight: 600;">Active Buyback</td>
+                        </tr>
+                        <tr style="background: rgba(96, 165, 250, 0.05);">
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$6,156</td>
                             <td>$12.36M</td>
@@ -1165,6 +1246,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$1.56M</td>
+                            <td>$2.37B</td>
+                            <td><span class="pe-value">4.14</span></td>
+                            <td>$4.01B</td>
+                            <td><span class="pe-fdv-value">7.02</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$1.11M</td>
@@ -1367,6 +1456,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(96, 165, 250, 0.05);">
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$1.56M</td>
+                            <td>$2.37B</td>
+                            <td><span class="pe-value">4.14</span></td>
+                            <td style="color: #60a5fa; font-weight: 600;">Active Buyback</td>
+                        </tr>
+                        <tr style="background: rgba(96, 165, 250, 0.05);">
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$1.11M</td>
                             <td>$1.51B</td>
@@ -1452,6 +1548,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$52,520</td>
+                            <td>$144.38M</td>
+                            <td><span class="pe-value">7.53</span></td>
+                            <td>$148.89M</td>
+                            <td><span class="pe-fdv-value">7.77</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$14,899</td>
@@ -1680,6 +1784,14 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><strong>Nov 11, 2025</strong></td>
+                            <td>$169,278</td>
+                            <td>$233.14M</td>
+                            <td><span class="pe-value">3.77</span></td>
+                            <td>$486.90M</td>
+                            <td><span class="pe-fdv-value">7.88</span></td>
+                        </tr>
+                        <tr>
                             <td><strong>Nov 10, 2025</strong></td>
                             <td>$143,166</td>
                             <td>$207.24M</td>
@@ -1799,57 +1911,59 @@
     </div>
     
     <script>
-        // Protocol data - Updated Nov 10, 2025
+        // Protocol data - Updated Nov 11, 2025
         const protocols = [
             {
                 name: 'Believe',
                 protocol: 'Believe',
-                revenue: 23120,
-                marketCap: 12358420,
-                peMarketCap: 1.46,
-                fdv: 16438800,
-                peFdv: 1.95,
-                color: 'rank-1'
+                revenue: 10414,
+                marketCap: 11648511,
+                peMarketCap: 3.06,
+                fdv: 15494500,
+                peFdv: 4.08,
+                color: 'rank-1',
+                warning: 'Team has been inactive and liquidity is very low, advise is not to buy this token.'
             },
             {
                 name: 'Meteora',
                 protocol: 'Meteora',
-                revenue: 143166,
-                marketCap: 207242620,
-                peMarketCap: 3.97,
-                fdv: 432818617,
-                peFdv: 8.28,
+                revenue: 169278,
+                marketCap: 233135965,
+                peMarketCap: 3.77,
+                fdv: 486896001,
+                peFdv: 7.88,
                 color: 'rank-2'
             },
             {
                 name: 'Pump.Fun',
                 protocol: 'Pump.Fun',
-                revenue: 1110000,
-                marketCap: 1513350000,
-                peMarketCap: 3.74,
-                fdv: 4270347090,
-                peFdv: 10.54,
+                revenue: 1564608,
+                marketCap: 2367080000,
+                peMarketCap: 4.14,
+                fdv: 4007615686,
+                peFdv: 7.02,
                 color: 'rank-3'
-            },
-            {
-                name: 'Heaven',
-                protocol: 'Heaven',
-                revenue: 491,
-                marketCap: 5056813,
-                peMarketCap: 28.22,
-                fdv: 9185621,
-                peFdv: 51.25,
-                color: 'rank-4'
             },
             {
                 name: 'MetaDao',
                 protocol: 'MetaDao',
-                revenue: 14899,
-                marketCap: 158707677,
-                peMarketCap: 29.18,
-                fdv: 158707837,
-                peFdv: 29.18,
-                color: 'rank-5'
+                revenue: 52520,
+                marketCap: 144375750,
+                peMarketCap: 7.53,
+                fdv: 148888503,
+                peFdv: 7.77,
+                color: 'rank-4'
+            },
+            {
+                name: 'Heaven',
+                protocol: 'Heaven',
+                revenue: 580,
+                marketCap: 4258565,
+                peMarketCap: 20.12,
+                fdv: 7736401,
+                peFdv: 36.54,
+                color: 'rank-5',
+                warning: 'Team is saying that Heaven V2 is being developed, there is no proof for this, remain cautious!'
             }
         ];
 
@@ -1903,12 +2017,18 @@
             });
 
             const tbody = document.getElementById('tableBody');
-            tbody.innerHTML = sortedProtocols.map((protocol, index) => `
+            tbody.innerHTML = sortedProtocols.map((protocol, index) => {
+                const warningHtml = protocol.warning 
+                    ? `<span class="warning-icon">!<span class="warning-tooltip">${protocol.warning}</span></span>`
+                    : '';
+                
+                return `
                 <tr>
                     <td>
                         <div class="protocol-name">
                             <div class="rank-badge ${protocol.color}">${index + 1}</div>
                             <strong>${protocol.name}</strong>
+                            ${warningHtml}
                         </div>
                     </td>
                     <td>${formatCurrency(protocol.revenue)}</td>
@@ -1917,7 +2037,8 @@
                     <td>${formatCurrency(protocol.fdv)}</td>
                     <td><span class="pe-fdv-value">${protocol.peFdv.toFixed(2)}</span></td>
                 </tr>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function showTab(tabId) {
