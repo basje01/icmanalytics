@@ -362,6 +362,7 @@
             position: relative;
             transition: all 0.2s ease;
             box-shadow: 0 2px 4px rgba(96, 165, 250, 0.3);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .warning-icon:hover {
@@ -369,7 +370,8 @@
             box-shadow: 0 3px 8px rgba(96, 165, 250, 0.5);
         }
 
-        .warning-icon:hover .warning-tooltip {
+        .warning-icon:hover .warning-tooltip,
+        .warning-icon.active .warning-tooltip {
             display: block;
         }
 
@@ -391,6 +393,7 @@
             line-height: 1.5;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             font-style: normal;
+            pointer-events: none;
         }
 
         .warning-tooltip::after {
@@ -401,6 +404,40 @@
             transform: translateX(-50%);
             border: 7px solid transparent;
             border-top-color: rgba(96, 165, 250, 0.5);
+        }
+
+        /* Mobile tooltip adjustments */
+        @media (max-width: 768px) {
+            .warning-tooltip {
+                width: 280px;
+                max-width: calc(100vw - 40px);
+                font-size: 0.8125rem;
+                padding: 12px 16px;
+                left: auto;
+                right: -10px;
+                transform: none;
+            }
+            
+            .warning-tooltip::after {
+                left: auto;
+                right: 20px;
+                transform: none;
+            }
+            
+            .warning-icon {
+                width: 20px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .warning-tooltip {
+                width: 260px;
+                font-size: 0.75rem;
+                padding: 10px 14px;
+            }
         }
 
         .methodology-info {
@@ -429,6 +466,7 @@
             flex-shrink: 0;
             margin-top: 2px;
             box-shadow: 0 2px 4px rgba(96, 165, 250, 0.3);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .methodology-info-content {
@@ -463,6 +501,43 @@
             left: 6px;
             color: #60a5fa;
             font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .methodology-info {
+                padding: 14px 16px;
+                margin-bottom: 25px;
+                gap: 10px;
+            }
+            
+            .methodology-info-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 0.8rem;
+            }
+            
+            .methodology-info-title {
+                font-size: 0.85rem;
+            }
+            
+            .methodology-info-list li {
+                font-size: 0.8125rem;
+                padding-left: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .methodology-info {
+                padding: 12px 14px;
+            }
+            
+            .methodology-info-title {
+                font-size: 0.8rem;
+            }
+            
+            .methodology-info-list li {
+                font-size: 0.75rem;
+            }
         }
 
         /* Mobile optimizations */
@@ -598,7 +673,7 @@
         <div id="overview" class="tab-content active">
             <div class="page-header">
                 <h1>Protocol Rankings</h1>
-                <p>13th of November • Click column names to sort • Lower P/E = Better Value</p>
+                <p>14th of November • Click column names to sort • Lower P/E = Better Value</p>
             </div>
             
             <div class="protocol-table-wrapper">
@@ -642,8 +717,8 @@
                                     <strong>Believe</strong>
                                 </div>
                             </td>
-                            <td>$5,963</td>
-                            <td><span class="pe-value">4.24</span></td>
+                            <td>$7,211</td>
+                            <td><span class="pe-value">3.50</span></td>
                             <td style="color: #60a5fa;">Active Buyback</td>
                         </tr>
                         <tr>
@@ -653,8 +728,8 @@
                                     <strong>Pump.Fun</strong>
                                 </div>
                             </td>
-                            <td>$1.27M</td>
-                            <td><span class="pe-value">4.45</span></td>
+                            <td>$1.11M</td>
+                            <td><span class="pe-value">5.18</span></td>
                             <td style="color: #60a5fa;">Active Buyback</td>
                         </tr>
                         <tr style="background: rgba(249, 115, 22, 0.1);">
@@ -664,8 +739,8 @@
                                     <strong>Heaven 🔥</strong>
                                 </div>
                             </td>
-                            <td>$494</td>
-                            <td><span class="pe-value">21.39</span></td>
+                            <td>$361</td>
+                            <td><span class="pe-value">29.44</span></td>
                             <td style="color: #f97316; font-weight: 700;">🔥 Burned - Supply Reduction</td>
                         </tr>
                     </tbody>
@@ -711,6 +786,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$361</td>
+                            <td>$3.88M</td>
+                            <td><span class="pe-value">29.44</span></td>
+                            <td>$7.04M</td>
+                            <td><span class="pe-fdv-value">53.41</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$494</td>
@@ -937,6 +1020,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(249, 115, 22, 0.05);">
+                            <td><strong>Nov 14, 2025 🔥</strong></td>
+                            <td>$361</td>
+                            <td>$3.88M</td>
+                            <td><span class="pe-value">29.44</span></td>
+                            <td style="color: #f97316; font-weight: 600;">Burned - Supply Reduction</td>
+                        </tr>
+                        <tr style="background: rgba(249, 115, 22, 0.05);">
                             <td><strong>Nov 13, 2025 🔥</strong></td>
                             <td>$494</td>
                             <td>$3.86M</td>
@@ -1053,6 +1143,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$7,211</td>
+                            <td>$9.22M</td>
+                            <td><span class="pe-value">3.50</span></td>
+                            <td>$12.27M</td>
+                            <td><span class="pe-fdv-value">4.66</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$5,963</td>
@@ -1279,6 +1377,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(96, 165, 250, 0.05);">
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$7,211</td>
+                            <td>$9.22M</td>
+                            <td><span class="pe-value">3.50</span></td>
+                            <td style="color: #60a5fa; font-weight: 600;">Active Buyback</td>
+                        </tr>
+                        <tr style="background: rgba(96, 165, 250, 0.05);">
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$5,963</td>
                             <td>$9.24M</td>
@@ -1396,6 +1501,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$1.21M</td>
+                            <td>$2.11B</td>
+                            <td><span class="pe-value">4.75</span></td>
+                            <td>$3.57B</td>
+                            <td><span class="pe-fdv-value">8.06</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$1.25M</td>
@@ -1622,6 +1735,13 @@
                     </thead>
                     <tbody>
                         <tr style="background: rgba(96, 165, 250, 0.05);">
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$1.11M</td>
+                            <td>$2.11B</td>
+                            <td><span class="pe-value">5.18</span></td>
+                            <td style="color: #60a5fa; font-weight: 600;">Active Buyback</td>
+                        </tr>
+                        <tr style="background: rgba(96, 165, 250, 0.05);">
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$1.27M</td>
                             <td>$2.06B</td>
@@ -1728,6 +1848,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$25,249</td>
+                            <td>$127.55M</td>
+                            <td><span class="pe-value">13.84</span></td>
+                            <td>$131.53M</td>
+                            <td><span class="pe-fdv-value">14.27</span></td>
+                        </tr>
                         <tr>
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$25,309</td>
@@ -1980,6 +2108,14 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><strong>Nov 14, 2025</strong></td>
+                            <td>$103,860</td>
+                            <td>$219.57M</td>
+                            <td><span class="pe-value">5.79</span></td>
+                            <td>$458.56M</td>
+                            <td><span class="pe-fdv-value">12.10</span></td>
+                        </tr>
+                        <tr>
                             <td><strong>Nov 13, 2025</strong></td>
                             <td>$184,198</td>
                             <td>$218.71M</td>
@@ -2123,57 +2259,57 @@
     </div>
     
     <script>
-        // Protocol data - Updated Nov 13, 2025
+        // Protocol data - Updated Nov 14, 2025
         const protocols = [
-            {
-                name: 'Meteora',
-                protocol: 'Meteora',
-                revenue: 184198,
-                marketCap: 218708288,
-                peMarketCap: 3.25,
-                fdv: 456764322,
-                peFdv: 6.79,
-                color: 'rank-1'
-            },
             {
                 name: 'Believe',
                 protocol: 'Believe',
-                revenue: 5963,
-                marketCap: 9238819,
-                peMarketCap: 4.24,
-                fdv: 12289200,
-                peFdv: 5.65,
-                color: 'rank-2',
+                revenue: 7211,
+                marketCap: 9220821,
+                peMarketCap: 3.50,
+                fdv: 12265260,
+                peFdv: 4.66,
+                color: 'rank-1',
                 warning: 'Team has been inactive and liquidity is very low, advise is not to buy this token.'
             },
             {
                 name: 'Pump.Fun',
                 protocol: 'Pump.Fun',
-                revenue: 1250000,
-                marketCap: 2063820000,
-                peMarketCap: 4.52,
-                fdv: 3498000000,
-                peFdv: 7.67,
+                revenue: 1214750,
+                marketCap: 2108070000,
+                peMarketCap: 4.75,
+                fdv: 3573000000,
+                peFdv: 8.06,
+                color: 'rank-2'
+            },
+            {
+                name: 'Meteora',
+                protocol: 'Meteora',
+                revenue: 103860,
+                marketCap: 219568216,
+                peMarketCap: 5.79,
+                fdv: 458560250,
+                peFdv: 12.10,
                 color: 'rank-3'
             },
             {
                 name: 'MetaDao',
                 protocol: 'MetaDao',
-                revenue: 25309,
-                marketCap: 125110888,
-                peMarketCap: 13.54,
-                fdv: 129021479,
-                peFdv: 13.97,
+                revenue: 25249,
+                marketCap: 127546675,
+                peMarketCap: 13.84,
+                fdv: 131533402,
+                peFdv: 14.27,
                 color: 'rank-4'
             },
             {
                 name: 'Heaven',
                 protocol: 'Heaven',
-                revenue: 494,
-                marketCap: 3856432,
-                peMarketCap: 21.39,
-                fdv: 6995248,
-                peFdv: 38.80,
+                revenue: 361,
+                marketCap: 3879782,
+                peMarketCap: 29.44,
+                fdv: 7037581,
+                peFdv: 53.41,
                 color: 'rank-5',
                 warning: 'Team is saying that Heaven V2 is being developed, there is no proof for this, remain cautious!'
             }
@@ -2475,12 +2611,51 @@
         // Calculate stats when page loads
         window.addEventListener('DOMContentLoaded', () => {
             calculateProtocolStats();
+            setupMobileTooltips();
         });
         
         // Also recalculate if stats aren't loaded yet
         setTimeout(() => {
             calculateProtocolStats();
+            setupMobileTooltips();
         }, 100);
+
+        // Setup mobile touch handling for info icons
+        function setupMobileTooltips() {
+            const warningIcons = document.querySelectorAll('.warning-icon');
+            
+            warningIcons.forEach(icon => {
+                // Remove any existing listeners
+                icon.replaceWith(icon.cloneNode(true));
+            });
+            
+            // Re-select after cloning
+            document.querySelectorAll('.warning-icon').forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    
+                    // Close all other tooltips
+                    document.querySelectorAll('.warning-icon.active').forEach(other => {
+                        if (other !== this) {
+                            other.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle this tooltip
+                    this.classList.toggle('active');
+                });
+            });
+            
+            // Close tooltips when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.warning-icon')) {
+                    document.querySelectorAll('.warning-icon.active').forEach(icon => {
+                        icon.classList.remove('active');
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
