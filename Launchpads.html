@@ -347,137 +347,103 @@
 
         .warning-icon {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             background: linear-gradient(135deg, #60a5fa, #3b82f6);
             border-radius: 50%;
             color: white;
             text-align: center;
-            line-height: 18px;
-            font-weight: 600;
-            font-size: 0.75rem;
+            line-height: 20px;
+            font-weight: 700;
+            font-size: 0.8rem;
             font-style: italic;
             margin-left: 6px;
             cursor: help;
             position: relative;
             transition: all 0.2s ease;
-            box-shadow: 0 2px 4px rgba(96, 165, 250, 0.3);
+            box-shadow: 0 3px 8px rgba(96, 165, 250, 0.4);
             -webkit-tap-highlight-color: transparent;
+            vertical-align: middle;
         }
 
         .warning-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 3px 8px rgba(96, 165, 250, 0.5);
+            transform: scale(1.15);
+            box-shadow: 0 5px 15px rgba(96, 165, 250, 0.6);
         }
 
-        .warning-icon:hover .warning-tooltip,
-        .warning-icon.active .warning-tooltip {
+        .warning-icon:hover .warning-tooltip {
             display: block;
+        }
+        
+        /* Dynamic positioning based on row position */
+        .warning-icon.position-top:hover .warning-tooltip {
+            position: fixed !important;
+            left: 20px !important;
+            top: 20px !important;
+            transform: none !important;
+        }
+        
+        .warning-icon.position-bottom:hover .warning-tooltip {
+            position: fixed !important;
+            left: 20px !important;
+            top: auto !important;
+            bottom: 20px !important;
+            transform: none !important;
         }
 
         .warning-tooltip {
             display: none;
-            position: absolute;
-            bottom: 28px;
+            position: fixed;
             left: 50%;
-            transform: translateX(-50%);
+            top: 50%;
+            transform: translate(-50%, -50%);
             background: rgba(15, 23, 42, 0.98);
-            border: 1px solid rgba(96, 165, 250, 0.5);
-            border-radius: 10px;
-            padding: 14px 18px;
-            width: 300px;
-            z-index: 1000;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #e2e8f0;
-            line-height: 1.5;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            border: 3px solid #60a5fa;
+            border-radius: 12px;
+            padding: 20px 24px;
+            width: 340px;
+            max-width: 85vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 999999 !important;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.8;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 0 2px rgba(96, 165, 250, 0.4), 0 0 40px rgba(96, 165, 250, 0.5);
             font-style: normal;
             pointer-events: none;
+            margin: 0;
         }
 
         .warning-tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 7px solid transparent;
-            border-top-color: rgba(96, 165, 250, 0.5);
+            display: none;
         }
 
-        /* Mobile tooltip adjustments */
-        @media (max-width: 768px) {
-            .warning-tooltip {
-                width: 280px;
-                max-width: calc(100vw - 40px);
-                font-size: 0.8125rem;
-                padding: 12px 16px;
-                left: auto;
-                right: -10px;
-                transform: none;
-            }
-            
-            .warning-tooltip::after {
-                left: auto;
-                right: 20px;
-                transform: none;
-            }
-            
-            .warning-icon {
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                font-size: 0.8rem;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .warning-tooltip {
-                width: 260px;
-                font-size: 0.75rem;
-                padding: 10px 14px;
-            }
-        }
-
+        /* ENHANCED METHODOLOGY INFO BOX STYLES */
         .methodology-info {
-            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
-            border: 1px solid rgba(96, 165, 250, 0.3);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            background: rgba(96, 165, 250, 0.1);
+            border-left: 3px solid #60a5fa;
+            padding: 12px 16px;
+            margin: 0 0 24px 0;
+            box-sizing: border-box;
         }
 
         .methodology-info-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 22px;
-            height: 22px;
-            background: linear-gradient(135deg, #60a5fa, #3b82f6);
-            border-radius: 50%;
-            color: white;
-            font-weight: 600;
-            font-size: 0.85rem;
-            font-style: italic;
-            flex-shrink: 0;
-            margin-top: 2px;
-            box-shadow: 0 2px 4px rgba(96, 165, 250, 0.3);
-            -webkit-tap-highlight-color: transparent;
+            display: none;
         }
 
         .methodology-info-content {
-            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .methodology-info-title {
-            font-weight: 700;
+            font-weight: 600;
             color: #60a5fa;
             font-size: 0.9rem;
-            margin-bottom: 6px;
+            margin: 0 0 6px 0;
         }
 
         .methodology-info-list {
@@ -488,32 +454,61 @@
 
         .methodology-info-list li {
             color: #cbd5e1;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            padding-left: 20px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin: 0 0 4px 0;
+            padding-left: 12px;
             position: relative;
-            margin-bottom: 4px;
+        }
+
+        .methodology-info-list li:last-child {
+            margin-bottom: 0;
         }
 
         .methodology-info-list li:before {
             content: '•';
             position: absolute;
-            left: 6px;
+            left: 0;
             color: #60a5fa;
-            font-weight: 700;
+        }
+            font-size: 1.2rem;
+            line-height: 1.5;
         }
 
+        /* Mobile tooltip adjustments */
         @media (max-width: 768px) {
-            .methodology-info {
-                padding: 14px 16px;
-                margin-bottom: 25px;
-                gap: 10px;
+            .warning-tooltip {
+                position: fixed;
+                width: calc(100vw - 40px);
+                max-width: 320px;
+                font-size: 0.9rem;
+                font-weight: 700;
+                padding: 16px 18px;
+                left: 50%;
+                top: 50%;
+                bottom: auto;
+                transform: translate(-50%, -50%);
+                margin-bottom: 0;
+                background: rgba(15, 23, 42, 0.98);
+                border: 3px solid #60a5fa;
+                color: #ffffff;
+                box-shadow: 0 10px 40px rgba(96, 165, 250, 0.7), 0 0 0 2px rgba(96, 165, 250, 0.4), 0 0 30px rgba(96, 165, 250, 0.5);
             }
             
-            .methodology-info-icon {
+            .warning-tooltip::after {
+                display: none;
+            }
+            
+            .warning-icon {
                 width: 20px;
                 height: 20px;
+                line-height: 20px;
                 font-size: 0.8rem;
+            }
+            
+            .methodology-info {
+                padding: 10px 12px;
+                margin-bottom: 20px;
             }
             
             .methodology-info-title {
@@ -521,14 +516,21 @@
             }
             
             .methodology-info-list li {
-                font-size: 0.8125rem;
-                padding-left: 18px;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
+            .warning-tooltip {
+                width: calc(100vw - 30px);
+                max-width: 300px;
+                font-size: 0.875rem;
+                font-weight: 700;
+                padding: 14px 16px;
+            }
+            
             .methodology-info {
-                padding: 12px 14px;
+                padding: 10px 12px;
             }
             
             .methodology-info-title {
@@ -539,6 +541,8 @@
                 font-size: 0.75rem;
             }
         }
+        
+        /* Backdrop removed - tooltip appears directly centered */
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
@@ -1101,15 +1105,7 @@
                 <p>Track revenue, market cap, and P/E trends over time</p>
             </div>
             
-            <div class="methodology-info">
-                <div class="methodology-info-icon">i</div>
-                <div class="methodology-info-content">
-                    <div class="methodology-info-title">Methodology Change (Nov 11, 2025)</div>
-                    <ul class="methodology-info-list">
-                        <li>Buyback methodology changed - now equals revenue</li>
-                    </ul>
-                </div>
-            </div>
+            <div id="believe-methodology"></div>
             
             <div class="stats-overview" id="believe-stats">
                 <div class="stat-box">
@@ -1458,16 +1454,7 @@
                 <p>Track revenue, market cap, and P/E trends over time</p>
             </div>
             
-            <div class="methodology-info">
-                <div class="methodology-info-icon">i</div>
-                <div class="methodology-info-content">
-                    <div class="methodology-info-title">Methodology Changes (Nov 11, 2025)</div>
-                    <ul class="methodology-info-list">
-                        <li>Revenue methodology changed to data from fees.pump.fun</li>
-                        <li>Circulating supply increased from 354B to 590B tokens</li>
-                    </ul>
-                </div>
-            </div>
+            <div id="pumpfun-methodology"></div>
             
             <div class="stats-overview" id="pumpfun-stats">
                 <div class="stat-box">
@@ -2270,7 +2257,13 @@
                 fdv: 12265260,
                 peFdv: 4.66,
                 color: 'rank-1',
-                warning: 'Team has been inactive and liquidity is very low, advise is not to buy this token.'
+                warning: 'Team has been inactive and liquidity is very low, remain cautious!',
+                methodology: {
+                    title: 'Methodology Change (Nov 11, 2025)',
+                    changes: [
+                        'Buyback methodology changed - now equals revenue'
+                    ]
+                }
             },
             {
                 name: 'Pump.Fun',
@@ -2280,7 +2273,14 @@
                 peMarketCap: 4.75,
                 fdv: 3573000000,
                 peFdv: 8.06,
-                color: 'rank-2'
+                color: 'rank-2',
+                methodology: {
+                    title: 'Methodology Changes (Nov 11, 2025)',
+                    changes: [
+                        'Revenue methodology changed to data from fees.pump.fun',
+                        'Circulating supply increased from 354B to 590B tokens'
+                    ]
+                }
             },
             {
                 name: 'Meteora',
@@ -2317,6 +2317,33 @@
 
         let currentSort = 'peMarketCap';
         let sortOrder = 'asc';
+
+        // Dynamically position warning tooltips based on row location
+        function updateTooltipPositions() {
+            const table = document.getElementById('protocolTable');
+            if (!table) return;
+            
+            const tbody = table.querySelector('tbody');
+            const rows = tbody.querySelectorAll('tr');
+            const totalRows = rows.length;
+            
+            rows.forEach((row, index) => {
+                const warningIcon = row.querySelector('.warning-icon');
+                if (warningIcon) {
+                    // Remove existing position classes
+                    warningIcon.classList.remove('position-top', 'position-bottom');
+                    
+                    // Add class based on position in table
+                    // If in top half, show tooltip at top-left
+                    // If in bottom half, show tooltip at bottom-left
+                    if (index < totalRows / 2) {
+                        warningIcon.classList.add('position-top');
+                    } else {
+                        warningIcon.classList.add('position-bottom');
+                    }
+                }
+            });
+        }
 
         function formatCurrency(value) {
             if (value >= 1000000000) return `$${(value / 1000000000).toFixed(2)}B`;
@@ -2367,7 +2394,7 @@
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = sortedProtocols.map((protocol, index) => {
                 const warningHtml = protocol.warning 
-                    ? `<span class="warning-icon">i<span class="warning-tooltip">${protocol.warning}</span></span>`
+                    ? `<span class="warning-icon warning-${protocol.protocol.toLowerCase().replace(/\./g, '')}">i<span class="warning-tooltip">${protocol.warning}</span></span>`
                     : '';
                 
                 return `
@@ -2387,6 +2414,9 @@
                 </tr>
                 `;
             }).join('');
+            
+            // Update tooltip positions after rendering
+            updateTooltipPositions();
         }
 
         function showTab(tabId) {
@@ -2605,56 +2635,58 @@
             return value.toFixed(0);
         }
 
+        // Render methodology infoboxes dynamically
+        function renderMethodologyBoxes() {
+            protocols.forEach(protocol => {
+                if (protocol.methodology) {
+                    const containerId = `${protocol.protocol.toLowerCase().replace(/\./g, '')}-methodology`;
+                    const container = document.getElementById(containerId);
+                    
+                    if (container) {
+                        const changesHtml = protocol.methodology.changes
+                            .map(change => `<li>${change}</li>`)
+                            .join('');
+                        
+                        container.innerHTML = `
+                            <div class="methodology-info">
+                                <div class="methodology-info-icon">i</div>
+                                <div class="methodology-info-content">
+                                    <div class="methodology-info-title">${protocol.methodology.title}</div>
+                                    <ul class="methodology-info-list">
+                                        ${changesHtml}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+            });
+        }
+
         // Initialize table with default sort (P/E Market Cap ascending)
         renderTable();
+        renderMethodologyBoxes();
         
         // Calculate stats when page loads
         window.addEventListener('DOMContentLoaded', () => {
+            renderMethodologyBoxes();
             calculateProtocolStats();
             setupMobileTooltips();
+            updateTooltipPositions();
         });
         
         // Also recalculate if stats aren't loaded yet
         setTimeout(() => {
+            renderMethodologyBoxes();
             calculateProtocolStats();
             setupMobileTooltips();
+            updateTooltipPositions();
         }, 100);
 
         // Setup mobile touch handling for info icons
         function setupMobileTooltips() {
-            const warningIcons = document.querySelectorAll('.warning-icon');
-            
-            warningIcons.forEach(icon => {
-                // Remove any existing listeners
-                icon.replaceWith(icon.cloneNode(true));
-            });
-            
-            // Re-select after cloning
-            document.querySelectorAll('.warning-icon').forEach(icon => {
-                icon.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    
-                    // Close all other tooltips
-                    document.querySelectorAll('.warning-icon.active').forEach(other => {
-                        if (other !== this) {
-                            other.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle this tooltip
-                    this.classList.toggle('active');
-                });
-            });
-            
-            // Close tooltips when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.warning-icon')) {
-                    document.querySelectorAll('.warning-icon.active').forEach(icon => {
-                        icon.classList.remove('active');
-                    });
-                }
-            });
+            // Tooltips now work on hover - no JavaScript needed for desktop
+            // This function kept for mobile compatibility if needed
         }
     </script>
 </body>
