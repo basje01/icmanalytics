@@ -371,7 +371,8 @@
             box-shadow: 0 5px 15px rgba(96, 165, 250, 0.6);
         }
 
-        .warning-icon:hover .warning-tooltip {
+        .warning-icon:hover .warning-tooltip,
+        .warning-icon.active .warning-tooltip {
             display: block;
         }
         
@@ -478,16 +479,16 @@
         /* Mobile tooltip adjustments */
         @media (max-width: 768px) {
             .warning-tooltip {
-                position: fixed;
+                position: fixed !important;
                 width: calc(100vw - 40px);
-                max-width: 320px;
-                font-size: 0.9rem;
+                max-width: 340px;
+                font-size: 0.95rem;
                 font-weight: 700;
-                padding: 16px 18px;
-                left: 50%;
-                top: 50%;
-                bottom: auto;
-                transform: translate(-50%, -50%);
+                padding: 18px 20px;
+                left: 50% !important;
+                top: 50% !important;
+                bottom: auto !important;
+                transform: translate(-50%, -50%) !important;
                 margin-bottom: 0;
                 background: rgba(15, 23, 42, 0.98);
                 border: 3px solid #60a5fa;
@@ -500,10 +501,23 @@
             }
             
             .warning-icon {
-                width: 20px;
-                height: 20px;
-                line-height: 20px;
-                font-size: 0.8rem;
+                width: 22px;
+                height: 22px;
+                line-height: 22px;
+                font-size: 0.85rem;
+            }
+            
+            /* Override position classes on mobile - always center */
+            .warning-icon.position-top .warning-tooltip,
+            .warning-icon.position-bottom .warning-tooltip,
+            .warning-icon.position-top:hover .warning-tooltip,
+            .warning-icon.position-bottom:hover .warning-tooltip,
+            .warning-icon.position-top.active .warning-tooltip,
+            .warning-icon.position-bottom.active .warning-tooltip {
+                left: 50% !important;
+                top: 50% !important;
+                bottom: auto !important;
+                transform: translate(-50%, -50%) !important;
             }
             
             .methodology-info {
@@ -2685,8 +2699,36 @@
 
         // Setup mobile touch handling for info icons
         function setupMobileTooltips() {
-            // Tooltips now work on hover - no JavaScript needed for desktop
-            // This function kept for mobile compatibility if needed
+            // Add click/touch support for mobile devices
+            document.addEventListener('click', function(e) {
+                const clickedIcon = e.target.closest('.warning-icon');
+                
+                if (clickedIcon) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isActive = clickedIcon.classList.contains('active');
+                    
+                    // Close all other tooltips
+                    document.querySelectorAll('.warning-icon.active').forEach(icon => {
+                        if (icon !== clickedIcon) {
+                            icon.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle this tooltip
+                    if (!isActive) {
+                        clickedIcon.classList.add('active');
+                    } else {
+                        clickedIcon.classList.remove('active');
+                    }
+                } else if (!e.target.closest('.warning-tooltip')) {
+                    // Click outside - close all tooltips
+                    document.querySelectorAll('.warning-icon.active').forEach(icon => {
+                        icon.classList.remove('active');
+                    });
+                }
+            });
         }
     </script>
 </body>
